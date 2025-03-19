@@ -38,7 +38,7 @@ const dbConfig = {
   database: process.env.DB_NAME || "Ecom",
   port: 1433,
   options: {
-    encrypt: false, // ⚠️
+    encrypt: false,
     trustServerCertificate: true,
   },
 };
