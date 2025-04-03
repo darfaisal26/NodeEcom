@@ -4,13 +4,20 @@ const cors = require("cors");
 
 const bodyParser = require("body-parser");
 const { connectToDB, db } = require("./Config/ConfigDb");
-
+const { swaggerUi, swaggerSpec } = require("./Swagger");
+const userRoutes = require("./routes/userRoutes");
+const roleRoutes = require("./routes/roleRoutes");
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Routes
+app.use("/users", userRoutes);
+app.use("/roles", roleRoutes);
 
+// Swagger docs route
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const initializeServer = async () => {
   try {
@@ -23,5 +30,9 @@ const initializeServer = async () => {
     console.error("❌ Error initializing server:", error);
   }
 };
+
+
+
+
 
 initializeServer();
