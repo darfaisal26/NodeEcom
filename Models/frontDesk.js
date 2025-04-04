@@ -1,4 +1,4 @@
-const { poolConnect, sql } = require('../Config/ConfigDb');
+const { poolConnect, sql } = require('../Config/db');
 
 async function getFrontDeskProfiles() {
   await poolConnect;

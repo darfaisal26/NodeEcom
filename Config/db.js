@@ -1,25 +1,39 @@
-const { Sequelize } = require("sequelize");
+// Config/db.js
+const sql = require("mssql");
 require("dotenv").config();
 
-const sequelize = new Sequelize("ServiceBookingDb", "nodeuser", "admin@098", {
-  host: "DESKTOP-UPKIDK7\\SQLEXPRESS",
-  // host: "host.docker.internal", // ✅ Use this instead
-  dialect: "mssql",
+const config = {
+  user: "nodeuser",
+  password: "admin@098",
+  server: "DESKTOP-UPKIDK7\\SQLEXPRESS",
+  database: "ServiceBookingDb",
   port: 1433,
-  dialectOptions: {
-    options: {
-      encrypt: false,
-      trustServerCertificate: true,
-    },
+  options: {
+    encrypt: false,
+    trustServerCertificate: true,
   },
+};
+
+const pool = new sql.ConnectionPool(config);
+const poolConnect = pool.connect();
+
+pool.on("error", (err) => {
+  console.error("SQL Pool Error:", err);
 });
 
+// This mimics connectToDB function from Sequelize
 async function connectToDB() {
   try {
-    await sequelize.authenticate();
+    await poolConnect;
+    console.log("✅ Connected to SQL Server");
   } catch (error) {
+    console.error("❌ Database connection failed:", error);
     throw error;
   }
 }
 
-module.exports = { sequelize, connectToDB };
+module.exports = {
+  sql,
+  poolConnect,
+  connectToDB,
+};

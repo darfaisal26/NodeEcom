@@ -1,4 +1,4 @@
-const { poolConnect, sql } = require('../Config/ConfigDb');
+const { poolConnect, sql } = require('../Config/db');
 
 // Get all worker profiles with user info
 // async function getWorkerProfiles() {

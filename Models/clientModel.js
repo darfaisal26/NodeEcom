@@ -1,5 +1,5 @@
 // models/clientProfileModel.js
-const { poolConnect, sql } = require('../Config/ConfigDb');
+const { poolConnect, sql } = require('../Config/db');
 
 // Get client profile along with user info
 async function getClientProfiles() {

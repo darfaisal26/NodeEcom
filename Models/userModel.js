@@ -1,4 +1,4 @@
-const { poolConnect, sql } = require("../Config/ConfigDb");
+const { poolConnect, sql } = require("../Config/db");
 
 // Fetch all users with their roles
 async function getAllUsers() {
