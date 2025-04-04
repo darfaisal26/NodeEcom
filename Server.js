@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 
 const bodyParser = require("body-parser");
-const { connectToDB, db } = require("./Config/ConfigDb");
+const { connectToDB, db } = require("./Config/db");
 const { swaggerUi, swaggerSpec } = require("./Swagger");
 const userRoutes = require("./routes/userRoutes");
 const roleRoutes = require("./routes/roleRoutes");
